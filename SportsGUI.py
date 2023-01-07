@@ -134,11 +134,16 @@ def analyze():
         home_finalScore.config(bg='white')
         visit_finalScore.config(bg='#9CEA99')
         who_wins.config(text=visit_team)
-    
+
+    #Getting the quarter scores of that game
     quarter_scores = source.json() ['events'] [trueGame[0]] ['strResult']
+    #Replace the html breaks with spaces
     q_Score = quarter_scores.replace('<br>', ' ')
+    #Split the data into two (this is because there is two spaces separating the two teams)
     split_score = q_Score.split('  ')
+    #Replace the "Quarters" string into colons for both of the teams
     final_score_display = [x.replace(' Quarters:', ':') for x in split_score]
+    #Configure them to the window
     home_team_qts.config(text=final_score_display[0])
     away_team_qts.config(text=final_score_display[1])
         
